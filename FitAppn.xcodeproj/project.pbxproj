@@ -16,6 +16,11 @@
 			path = FitAppn;
 			sourceTree = "<group>";
 		};
+		5690958E2F2CE23900382EF0 /* Home */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 		5644D0CA2F2B72B2007B07DF = {
 			isa = PBXGroup;
 			children = (
+				5690958E2F2CE23900382EF0 /* Home */,
 				5644D0D52F2B72B2007B07DF /* FitAppn */,
 				5644D0D42F2B72B2007B07DF /* Products */,
 			);
@@ -62,6 +68,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				5644D0D52F2B72B2007B07DF /* FitAppn */,
+				5690958E2F2CE23900382EF0 /* Home */,
 			);
 			name = FitAppn;
 			packageProductDependencies = (
