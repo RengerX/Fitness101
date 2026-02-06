@@ -18,6 +18,14 @@ class HomeViewModel: ObservableObject {
     
     @Published var activites = [Activity]()
     
+    @Published var workouts = [
+        
+        Workout(id: 0, title: "Running", image: "figure.run", tintColor: .cyan, duration: "23 mins", date: "AUG 3", calories: "341 kcal"),
+        Workout(id: 1, title: "Strengh Training", image: "figure.run", tintColor: .red, duration: "23 mins", date: "AUG 1", calories: "341 kcal"),
+        Workout(id: 2, title: "Running", image: "figure.run", tintColor: .blue, duration: "5 min", date: "AUG 11", calories: "341 kcal"),
+        Workout(id: 3, title: "Running", image: "figure.run", tintColor: .purple, duration: "1 min", date: "AUG 19", calories: "341 kcal"),
+    ]
+    
     @Published var mockActivites = [
         Activity( title: "Today steps", subtitle: "Goal 12,000", image: "figure.walk", tinColor: .green, amount: "9812"),
         Activity( title: "Today ", subtitle: "Goal 12,000", image: "figure.walk", tinColor: .red, amount: "9812"),
@@ -42,6 +50,7 @@ class HomeViewModel: ObservableObject {
                 fetchTodayStandHours()
                 fetchTodaySteps()
                 fethcCurrentWeekActivities()
+                fethcRecentWorkouts()
                
             } catch {
                 print(error.localizedDescription)
@@ -115,6 +124,21 @@ class HomeViewModel: ObservableObject {
             case .success(let activities):
                 DispatchQueue.main.async {
                     self.activites.append(contentsOf: activities)
+                }
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+    }
+    //MARK: Recent Workouts
+    
+    func fethcRecentWorkouts() {
+        healthManager.fetchWorkoutsForMouth(month: Date()) { result in
+            
+            switch result {
+                case .success(let workouts):
+                DispatchQueue.main.async {
+                    self.workouts = Array(workouts.prefix(4))
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
